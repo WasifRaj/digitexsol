@@ -1,0 +1,162 @@
+/*===========================
+Font Load
+===========================*/
+
+@font-face {
+  font-family: "Champion";
+  src: url("wp-content/themes/rockyrun/fonts/Champion-HTF-Lightweight.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Champion-HTF-Lightweight.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Champion";
+  src: url("wp-content/themes/rockyrun/fonts/Champion-HTF-Bantamweight.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Champion-HTF-Bantamweight.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Buinton";
+  src: url("wp-content/themes/rockyrun/fonts/Buinton-Regular.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Buinton-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Champion";
+  src: url("wp-content/themes/rockyrun/fonts/ChampionSansCondLLTrial-Bold.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/ChampionSansCondLLTrial-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Knockout";
+  src: url("wp-content/themes/rockyrun/fonts/Knockout-HTF32-JuniorCruiserwt.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Knockout-HTF32-JuniorCruiserwt.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Knockout-HTF52";
+  src: url("wp-content/themes/rockyrun/fonts/Knockout-HTF52-Cruiserweight.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Knockout-HTF52-Cruiserweight.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*===========================
+    Global
+  ===========================*/
+:root {
+  --primary-color: #e7c432;
+  --primary-color-rgb: 0, 0, 0;
+  --secondary-color: #060606;
+  --light-color: #ffffff;
+  --offwhite-color: #f9f9f4;
+  --border-radius: 12px;
+  --animation-primary: 0.6s cubic-bezier(0.2, 1.33, 0.25, 1);
+  --animation-primary-ease-in: 0.6s cubic-bezier(0.25, 1, 0.1, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  font-size: 1.125rem;
+  font-weight: 300;
+  font-family: "Champion", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#wrapper {
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+}
+
+.content {
+  color: var(--light-color);
+}
+
+span.different {
+  color: var(--primary-color);
+}
+
+p {
+  font-family: "knockout";
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+figure {
+  margin: 0;
+}
+
+a {
+  transition: all var(--animation-primary-ease-in);
+}
+
+p>a,
+h4>a {
+  color: currentColor;
+  opacity: var(--bs-link-opacity, 1);
+}
+
+p>a:hover,
+h4>a:hover {
+  --bs-link-opacity: 0.8;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.container {
+  max-width: 1440px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.nav-link {
+  color: var(--light-color);
+  padding-inline: 25px !important;
+}
+
+.custom-header {
+  padding-block: 20px !important;
+}
+
+.navbar-brand img {
+  width: 220px;
+}
+
+header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+}
+
+.hero-section {
+  background: url(assets/images/banner-bg.webp);
+  padding-block: 120px;
+}
