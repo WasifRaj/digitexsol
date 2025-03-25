@@ -3,49 +3,41 @@ Font Load
 ===========================*/
 
 @font-face {
-  font-family: "Champion";
-  src: url("wp-content/themes/rockyrun/fonts/Champion-HTF-Lightweight.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Champion-HTF-Lightweight.woff") format("woff");
+  font-family: "bebas";
+  src: url("assets/fonts/bebas-Reg.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "futura";
+  src: url("assets/fonts/futura.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "itc-bk";
+  src: url("assets/fonts/itc-book.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Champion";
-  src: url("wp-content/themes/rockyrun/fonts/Champion-HTF-Bantamweight.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Champion-HTF-Bantamweight.woff") format("woff");
-  font-weight: 500;
+  font-family: "itc-med";
+  src: url("assets/fonts/itc-med.otf") format("opentype");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Buinton";
-  src: url("wp-content/themes/rockyrun/fonts/Buinton-Regular.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Buinton-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Champion";
-  src: url("wp-content/themes/rockyrun/fonts/ChampionSansCondLLTrial-Bold.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/ChampionSansCondLLTrial-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Knockout";
-  src: url("wp-content/themes/rockyrun/fonts/Knockout-HTF32-JuniorCruiserwt.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Knockout-HTF32-JuniorCruiserwt.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Knockout-HTF52";
-  src: url("wp-content/themes/rockyrun/fonts/Knockout-HTF52-Cruiserweight.woff2") format("woff2"), url("wp-content/themes/rockyrun/fonts/Knockout-HTF52-Cruiserweight.woff") format("woff");
-  font-weight: 500;
+  font-family: "itc-bd";
+  src: url("assets/fonts/itc-bold.otf") format("opentype");
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
@@ -75,19 +67,11 @@ body {
   font-weight: 300;
   font-family: "Champion", sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 #wrapper {
   overflow-x: clip;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 300;
 }
 
 .content {
@@ -136,7 +120,40 @@ li {
   padding-right: 50px;
 }
 
-.nav-link {
+/*------typography-----------*/
+
+a {
+  font-family: 'futura';
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 125px;
+  line-height: 135px;
+  font-family: itc-bd;
+  font-weight: 800;
+}
+
+h4 {
+  font-size: 35px;
+  line-height: 45px;
+  font-family: bebas;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 30px;
+  line-height: 40px;
+  text-transform: uppercase;
+  font-family: 'itc-bk';
+  font-weight: 300;
+}
+
+/*------typography-----------*/
+
+.nav-item .nav-link {
   color: var(--light-color);
   padding-inline: 25px !important;
 }
@@ -158,5 +175,122 @@ header {
 
 .hero-section {
   background: url(assets/images/banner-bg.webp);
-  padding-block: 120px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.hero-section h1 {
+  white-space: nowrap;
+  margin-bottom: 30px;
+}
+
+.hero-section .astronut {
+  width: 75%;
+}
+
+.hero-section .col-lft {
+  margin-top: -100px;
+}
+
+.hero-section h4 {
+  border-left: 4px solid;
+  padding-left: 40px;
+  margin-bottom: 40px;
+}
+
+a.btn {
+  font-family: 'futura';
+  color: white;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+a.btn.btn-secondary {
+  background: transparent;
+  border: unset;
+  font-family: futura;
+  font-size: 15px;
+  line-height: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 14px 20px;
+}
+
+a.btn.btn-secondary svg {
+  margin-bottom: 4px;
+}
+
+.hero-section .content .buttons {
+  position: relative;
+}
+
+.hero-section .content .buttons:before {
+  content: '';
+  position: absolute;
+  border-bottom: 4px solid var(--primary-color);
+  width: 300px;
+  left: -50%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: table;
+}
+
+.hero-section .row.align-items-center {
+  position: relative;
+  z-index: 9;
+}
+
+.marquee-container {
+  width: 100%;
+  position: absolute;
+  background: transparent;
+  top: 43%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: table;
+  z-index: 1;
+}
+
+.marquee-text-section {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-wrapper {
+  display: flex;
+  align-items: center;
+  width: 200%;
+  flex-direction: column;
+}
+
+.marquee-text {
+  display: flex;
+  gap: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 100%;
+}
+
+#marqueeText1 span {
+  font-size: 280px;
+  line-height: 230px;
+}
+
+#marqueeText2 span {
+  font-size: 380px;
+  line-height: 330px;
+}
+
+.hero-section .marquee-text span {
+  font-family: 'bebas';
+  color: transparent;
+  font-weight: 100;
+  -webkit-text-stroke: 1px #ffffff1a;
 }
