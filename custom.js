@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wrapper.innerHTML = `<span>${textContent}</span><span>${textContent}</span>`;
 
         gsap.set(wrapper, { xPercent: reverse ? -100 : 0 });
-        
+
         let marquee = gsap.to(wrapper, {
             xPercent: reverse ? 0 : -100, 
             duration: speed, 
@@ -16,20 +16,90 @@ document.addEventListener("DOMContentLoaded", function () {
         return marquee;
     }
 
-    let marquee1 = createMarquee("#marqueeText1", 80);  
-    let marquee2 = createMarquee("#marqueeText2", 80, true); 
+    let marquee1 = createMarquee("#marqueeText1", 120);  // Speed slow kar di
+    let marquee2 = createMarquee("#marqueeText2", 120, true); 
+
     let lastScrollTop = 0;
     window.addEventListener("scroll", function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop) {
-            marquee1.timeScale(1.2);
-            marquee2.timeScale(1.2);
+            marquee1.timeScale(0.8); // Pehle 1.2 tha, ab smooth kar diya
+            marquee2.timeScale(0.8);
         } else {
-            marquee1.timeScale(0.4);
-            marquee2.timeScale(0.4);
+            marquee1.timeScale(0.3); // Pehle 0.4 tha, ab aur slow kiya
+            marquee2.timeScale(0.3);
         }
 
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const mainItems = document.querySelectorAll(".service-list li");
+    const allSections = document.querySelectorAll(".service-content");
+    const subButtons = document.querySelectorAll(".sub-service-btn");
+
+    // Main Categories Click Event
+    mainItems.forEach(item => {
+        item.addEventListener("click", function () {
+            // Remove active class
+            mainItems.forEach(i => i.classList.remove("active"));
+            this.classList.add("active");
+
+            // Hide all sections
+            allSections.forEach(section => section.classList.remove("active"));
+
+            // Show the selected section
+            const target = this.getAttribute("data-target");
+            document.getElementById(target).classList.add("active");
+        });
+    });
+
+    // Sub-category Buttons (Image Change)
+    document.querySelectorAll(".service-content").forEach(section => {
+        const buttons = section.querySelectorAll(".sub-service-btn");
+        const image = section.querySelector(".service-image img");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                // Remove active class
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+
+                // Change Image
+                const newImage = this.getAttribute("data-image");
+                image.src = newImage;
+            });
+        });
+    });
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+function createMarqueeAnimation(id, baseSpeed, direction) {
+    let marquee = document.getElementById(id);
+
+    let animation = gsap.to(marquee, {
+        xPercent: direction === "left" ? -50 : 50, 
+        duration: baseSpeed,
+        ease: "linear",
+        repeat: -1,
+        paused: true
+    });
+
+    ScrollTrigger.create({
+        trigger: marquee,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => animation.play(),
+        onLeaveBack: () => animation.pause(),
+        scrub: 2 
+    });
+}
+
+createMarqueeAnimation("marquee1", 20, "left");
+createMarqueeAnimation("marquee2", 24, "right");
+createMarqueeAnimation("marquee3", 28, "left");
+createMarqueeAnimation("marquee4", 32, "right");
+createMarqueeAnimation("marquee5", 36, "left");
