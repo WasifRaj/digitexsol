@@ -91,9 +91,10 @@ span.different {
 }
 
 p {
-  font-family: "knockout";
+  font-family: "itc-bk";
   font-weight: 500;
-  line-height: 1.2;
+  font-size: 18px;
+  line-height: 28px;
 }
 
 figure {
@@ -150,6 +151,12 @@ h2 {
   font-family: itc-demi;
   font-weight: 600;
   color: var(--light-color);
+}
+
+h3 {
+  font-size: 40px;
+  line-height: 50px;
+  font-family: itc-demi;
 }
 
 h4 {
@@ -607,3 +614,137 @@ h5.dot:before {
     transform: scale(0.6);
 }
 }	
+
+.portfolio-section {
+  background: url(assets/images/portfolio-bg.webp);
+  padding-top: 200px;
+  padding-bottom: 150px;
+  background-position: bottom center;
+}
+
+.portfolio-section .swiper-container {
+  width: 100%;
+  overflow: visible;
+  padding: 20px 0;
+}
+
+.portfolio-section .swiper-wrapper {
+  display: flex;
+  align-items: center;
+  transition-timing-function: linear !important;
+}
+
+.portfolio-section .swiper-slide {
+  width: auto;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio-section a.btn.btn-secondary {
+  float: right;
+}
+
+.portfolio-section .nav-tabs .nav-link {
+  background: transparent;
+  color: var(--light-color);
+  border: unset;
+  position: relative;
+}
+
+.portfolio-section .nav-tabs .nav-link.active:before {
+  content: '';
+  position: absolute;
+  background: var(--primary-color);
+  width: 10px;
+  height: 10px;
+  border-radius: 40px;
+  bottom: -9px;
+  left: 0;
+  margin: auto;
+  filter: drop-shadow(0px 0px 5px var(--primary-color));
+  right: 0;
+}
+
+.portfolio-section #portfolioTabs {
+  border-bottom: unset;
+  margin-block: 40px;
+  border-top: 1px solid #ffffff42;
+  padding-top: 20px;
+  justify-content: space-between;
+}
+
+.portfolio-section .swiper-slide img {
+  width: 100%;
+}
+
+.portfolio-section .swiper-slide {
+  margin-inline: 20px;
+}
+
+.logo-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-figure {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-img {
+  width: 75px;
+  transition: transform 0.5s ease-out;
+  image-rendering: pixelated;
+}
+
+.review-section {
+  background: var(--light-color);
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.review-section .content, .review-section h2 {
+  color: black;
+}
+
+.review-section a.btn.btn-secondary {
+  color: black;
+  float: right;
+}
+
+.review-section {
+  padding: 100px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.review-swiper {
+  overflow: visible;
+  margin-top: 40px;
+}
+
+.review-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.review-section .swiper-slide {
+  border-radius: 50px;
+  padding: 18px;
+  border: 1px solid #0000002b;
+}
+
+.review-section .swiper-slide .map-img {
+  width: 150px;
+  margin-block: 20px;
+}
+
+.review-section .swiper-slide h3, .review-section .swiper-slide p {
+  color: black;
+}

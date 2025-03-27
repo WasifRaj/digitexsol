@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return marquee;
     }
 
-    let marquee1 = createMarquee("#marqueeText1", 120);  // Speed slow kar di
+    let marquee1 = createMarquee("#marqueeText1", 120);
     let marquee2 = createMarquee("#marqueeText2", 120, true); 
 
     let lastScrollTop = 0;
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop) {
-            marquee1.timeScale(0.8); // Pehle 1.2 tha, ab smooth kar diya
+            marquee1.timeScale(0.8); 
             marquee2.timeScale(0.8);
         } else {
-            marquee1.timeScale(0.3); // Pehle 0.4 tha, ab aur slow kiya
+            marquee1.timeScale(0.3); 
             marquee2.timeScale(0.3);
         }
 
@@ -103,3 +103,114 @@ createMarqueeAnimation("marquee2", 24, "right");
 createMarqueeAnimation("marquee3", 28, "left");
 createMarqueeAnimation("marquee4", 32, "right");
 createMarqueeAnimation("marquee5", 36, "left");
+
+
+// <-- Swiper JS -->
+document.addEventListener("DOMContentLoaded", function () {
+    let normalSlider, reverseSlider;
+
+    function createInfiniteSwiper(selector, reverse = false) {
+        return new Swiper(selector, {
+            slidesPerView: 2, // ✅ Agar slides kam hain to isko 1 kar do
+            spaceBetween: 20,
+            loop: true,
+            allowTouchMove: true,
+            speed: 5000,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+                reverseDirection: reverse,
+            },
+        });
+    }
+
+    function initSliders() {
+        // ✅ Pehle check karlo agar Swiper initialize ho chuka hai
+        if (normalSlider instanceof Swiper) {
+            normalSlider.destroy(true, true);
+        }
+        if (reverseSlider instanceof Swiper) {
+            reverseSlider.destroy(true, true);
+        }
+
+        // ✅ Swipers Initialize
+        normalSlider = createInfiniteSwiper(".normal-slider", false);
+        reverseSlider = createInfiniteSwiper(".reverse-slider", true);
+
+        // ✅ Hover Events
+        addHoverEvents();
+    }
+
+    function addHoverEvents() {
+        document.querySelectorAll(".swiper-container").forEach(container => {
+            container.addEventListener("mouseenter", () => {
+                if (normalSlider?.autoplay?.stop) normalSlider.autoplay.stop();
+                if (reverseSlider?.autoplay?.stop) reverseSlider.autoplay.stop();
+            });
+            container.addEventListener("mouseleave", () => {
+                if (normalSlider?.autoplay?.start) normalSlider.autoplay.start();
+                if (reverseSlider?.autoplay?.start) reverseSlider.autoplay.start();
+            });
+        });
+    }
+
+    // ✅ Initial Load (Jab Page First Time Load Ho)
+    initSliders();
+
+    // ✅ Tab Change pe Slider Restart Karein
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+        tab.addEventListener("shown.bs.tab", () => {
+            initSliders(); // ✅ Jab tab change ho, slider dobara initialize hoga
+        });
+    });
+});
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".logo-img", {
+    scale: 100, // Halka halka bada hoga
+    duration: 5,
+    ease: "none", // Smooth effect ke liye
+    scrollTrigger: {
+        trigger: ".logo-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1, // Smooth scrolling effect
+        pin: true, // Section ko fix karne ke liye
+    }
+});
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Swiper Initialization
+let reviewSwiper = new Swiper(".review-swiper", {
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
+gsap.fromTo(
+    ".review-swiper",
+    { x: "100%", opacity: 0 },
+    {
+        x: "0%", 
+        opacity: 1,
+        duration: 5,
+        scrollTrigger: {
+            trigger: ".review-swiper",
+            start: "top 50%", 
+            end: "top 30%",
+            scrub: 1,
+            toggleActions: "play reverse play reverse",
+        }
+    }
+);
+
