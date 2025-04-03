@@ -197,10 +197,10 @@ header {
 }
 
 .hero-section {
-  background: url(assets/images/banner-bg.webp);
+  background: url(assets/images/banner-bg.png);
   padding-top: 40px;
   padding-bottom: 80px;
-  background-position: top center;
+  background-position: bottom center;
 }
 
 .hero-section h1 {
@@ -367,7 +367,7 @@ a.btn.btn-secondary svg {
 .about-section {
   background: url(assets/images/about-bg.webp);
   padding-top: 200px;
-  padding-bottom: 250px;
+  padding-bottom: 480px;
   background-position: top center;
 }
 
@@ -396,8 +396,13 @@ h5.dot:before {
   filter: drop-shadow(0px 0px 5px var(--primary-color));
 }
 
+.main-bg {
+  background: url(assets/images/main-bg.png);
+  background-size: 100% 100%;
+}
+
 .service-section {
-  background: url(assets/images/service-bg.webp);
+  /* background: url(assets/images/service-bg.webp); */
   padding-top: 150px;
   padding-bottom: 150px;
   padding-inline: 50px;
@@ -486,6 +491,7 @@ h5.dot:before {
   background-size: cover;
   border-radius: 20px;
   overflow: hidden;
+  margin-top: -220px;
 }
 
 .service-section .content h1 {
@@ -506,7 +512,7 @@ h5.dot:before {
 
 .cta-section {
   position: relative;
-  background: url(assets/images/cta-bg.webp);
+  /* background: url(assets/images/cta-bg.webp); */
   background-position: right;
   background-repeat: no-repeat;
   background-size: contain;
@@ -563,7 +569,7 @@ h5.dot:before {
   position: relative;
   z-index: 99;
   pointer-events: none;
-  right: -70px;
+  right: -140px;
   width: 67%;
   top: 30px;
   animation: glowEffect 6s infinite alternate;
@@ -616,10 +622,10 @@ h5.dot:before {
 }	
 
 .portfolio-section {
-  background: url(assets/images/portfolio-bg.webp);
+  background: url(assets/images/potfolio-bg.png);
   padding-top: 200px;
-  padding-bottom: 150px;
-  background-position: bottom center;
+  background-position: top center;
+  margin-top: -120px;
 }
 
 .portfolio-section .swiper-container {
@@ -719,7 +725,7 @@ h5.dot:before {
 }
 
 .review-section {
-  padding: 100px 0;
+  padding: 140px 0;
   overflow: hidden;
   position: relative;
 }
@@ -747,4 +753,223 @@ h5.dot:before {
 
 .review-section .swiper-slide h3, .review-section .swiper-slide p {
   color: black;
+}
+
+.client-section {
+  background: url(assets/images/client-bg.webp);
+  padding-top: 180px;
+  padding-bottom: 180px;
+  background-position: bottom center;
+  position: relative;
+}
+
+.client-section h5.dot {
+  display: table;
+  margin-inline: auto;
+}
+
+/* .client-section .video-container { 
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background: url('assets/images/ps.png') no-repeat center/contain;
+} */
+
+.client-section .video-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mask-image: url(assets/images/ps.png);
+  -webkit-mask-image: url(assets/images/ps.png);
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  margin: auto;
+  right: 0;
+  left: 0;
+  z-index: -9;
+}
+
+.client-section .logos-grid {
+  margin-top: 20px;
+}
+
+.client-section .logos-grid .row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0; 
+}
+
+.client-section .logos-grid .row:last-child {
+  border-bottom: none; 
+}
+
+.client-section .logos-grid .col-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.3); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+}
+
+.client-section .logos-grid .row:last-child .col-3 {
+  border-bottom: none;
+}
+
+.client-section .logos-grid .col-3:nth-child(4),
+.client-section .logos-grid .col-3:nth-child(8),
+.client-section .logos-grid .col-3:nth-child(12) {
+  border-right: none;
+}
+
+.client-section .logos-grid img {
+  width: 130px;
+  max-width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+
+.client-section .col-md-12 {
+  position: relative;
+}
+
+.client-section .rocket {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.client-section .rocket {
+  position: absolute;
+  right: -200px;
+  bottom: 0;
+  width: 400px;
+}
+
+.get-section {
+  position: relative;
+  /* background: url(assets/images/cta-bg.webp); */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.get-section .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-block: 80px 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.get-section .marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.get-section .marquee {
+  display: flex;
+  font-size: 40px;
+  font-weight: bold;
+  gap: 50px;
+  min-width: 200%;
+}
+.get-section .marquee span {
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.get-section .marquee {
+  font-size: 120px;
+  line-height: 100px;
+  font-family: 'itc-bd';
+  font-weight: 800;
+}
+
+.get-section .marquee span {
+  color: transparent;
+  -webkit-text-stroke: 1px #ffffff59;
+  transition: 0.6s;
+}
+
+.get-section .marquee span:hover {
+  color: var(--light-color);
+  transition: 0.6s;
+}
+
+.get-section .get-img {
+  position: relative;
+  z-index: 99;
+  right: -70px;
+}
+
+.get-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.get-form .form-group {
+  display: flex;
+  gap: 10px;
+}
+
+.get-form input, .get-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid white;
+  background: #121e33;
+  color: #fff;
+  border-radius: 30px;
+  padding-inline: 20px;
+  resize: unset;
+  margin-bottom: 10px;
+}
+
+.get-form .submit-btn {
+  padding: 10px;
+  background: gold;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.get-form .submit-btn:hover {
+  background: darkgoldenrod;
+}
+
+.get-section .col-md-6.col-left {
+  position: relative;
+  z-index: 9;
+  padding-left: 100px;
+}
+
+.get-section .col-md-6.col-left .col-inner {
+  background: #000f24c9;
+  border-radius: 40px;
+  padding: 50px 60px;
+  border: 2px solid;
+}
+
+.get-section a.btn.btn-secondary {
+  margin: auto;
+  margin-left: unset;
+}
+
+.get-section .col-md-6.col-left .content {
+  margin-bottom: 30px;
 }

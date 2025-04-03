@@ -77,32 +77,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 gsap.registerPlugin(ScrollTrigger);
 
-function createMarqueeAnimation(id, baseSpeed, direction) {
-    let marquee = document.getElementById(id);
+function createMarqueeAnimation(elements, baseSpeed, direction) {
+    elements.forEach((marquee) => {
+        let animation = gsap.to(marquee, {
+            xPercent: direction === "left" ? -50 : 50, 
+            duration: baseSpeed,
+            ease: "linear",
+            repeat: -1,
+            paused: true
+        });
 
-    let animation = gsap.to(marquee, {
-        xPercent: direction === "left" ? -50 : 50, 
-        duration: baseSpeed,
-        ease: "linear",
-        repeat: -1,
-        paused: true
-    });
-
-    ScrollTrigger.create({
-        trigger: marquee,
-        start: "top bottom",
-        end: "bottom top",
-        onEnter: () => animation.play(),
-        onLeaveBack: () => animation.pause(),
-        scrub: 2 
+        ScrollTrigger.create({
+            trigger: marquee,
+            start: "top bottom",
+            end: "bottom top",
+            onEnter: () => animation.play(),
+            onLeaveBack: () => animation.pause(),
+            scrub: 2
+        });
     });
 }
 
-createMarqueeAnimation("marquee1", 20, "left");
-createMarqueeAnimation("marquee2", 24, "right");
-createMarqueeAnimation("marquee3", 28, "left");
-createMarqueeAnimation("marquee4", 32, "right");
-createMarqueeAnimation("marquee5", 36, "left");
+// Select marquees by class
+let leftMarquees = document.querySelectorAll(".marquee-left");
+let rightMarquees = document.querySelectorAll(".marquee-right");
+
+// Apply animations
+createMarqueeAnimation(leftMarquees, 20, "left");
+createMarqueeAnimation(rightMarquees, 24, "right");
+
 
 
 // <-- Swiper JS -->
