@@ -1084,6 +1084,7 @@ footer {
   color: white;
   padding: 50px 0 20px;
   position: relative;
+  border-bottom: 5px solid var(--primary-color);
 }
 
 footer:before {
@@ -1112,7 +1113,7 @@ footer .footer-content {
 footer .footer-logo {
   text-align: center;
   padding-bottom: 120px;
-  margin-top: -150px;
+  margin-top: -130px;
 }
 
 footer .footer-logo img {
@@ -1176,7 +1177,7 @@ footer .earth-img {
   right: -400px;
   bottom: -200px;
   max-width: 600px;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 1;
   animation: rotate 50s linear infinite;
 }
