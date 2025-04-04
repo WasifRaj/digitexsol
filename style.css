@@ -858,10 +858,9 @@ h5.dot:before {
 
 .get-section {
   position: relative;
-  /* background: url(assets/images/cta-bg.webp); */
-  background-position: right;
+  background: url(assets/images/cta-bg.webp);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 .get-section .marquee-container {
@@ -1066,10 +1065,10 @@ h5.dot:before {
 
 .faq-section {
   position: relative;
-  background: url(assets/images/fag-bg.webp);
-  background-position: right;
+  background: url(assets/images/faq-bg.webp);
   background-repeat: no-repeat;
   padding-block: 200px;
+  background-size: 100% 100%;
 }
 
 .faq-section a.btn.btn-secondary {
