@@ -1079,12 +1079,28 @@ h5.dot:before {
 
 /*------Footer Css Start-----------*/
 
+.footer-logo img {
+  width: 70px;
+}
+
+.footer-logo {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  margin: auto;
+  display: table;
+  margin-top: -58px;
+}
+
 footer {
   background-image: url(assets/images/footer-bg.jpg);
   color: white;
   padding: 50px 0 20px;
   position: relative;
   border-bottom: 5px solid var(--primary-color);
+  overflow: clip;
+  padding-top: 150px;
 }
 
 footer:before {
@@ -1108,16 +1124,6 @@ footer:after {
 footer .footer-content {
   position: relative;
   z-index: 2;
-}
-
-footer .footer-logo {
-  text-align: center;
-  padding-bottom: 120px;
-  margin-top: -130px;
-}
-
-footer .footer-logo img {
-  width: 100px;
 }
 
 footer .astronaut-img {
