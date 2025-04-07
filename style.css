@@ -836,7 +836,11 @@ h5.dot:before {
   max-width: 100%;
   height: 160px;
   object-fit: contain;
-  mix-blend-mode: lighten;
+  filter: brightness(0) invert(1);
+}
+
+.client-section .logos-grid .globe img {
+  filter: unset;
 }
 
 .client-section .col-md-12 {
@@ -952,7 +956,7 @@ h5.dot:before {
 }
 
 .logos-grid .col-3:hover img {
-  transform: translateY(-10px) scale(0.9);
+  transform: translateY(-15px) scale(0.6);
 }
 
 .logos-grid .col-3:hover .logo-text {
