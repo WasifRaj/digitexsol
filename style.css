@@ -210,6 +210,18 @@ header {
 
 .hero-section .astronut {
   width: 95%;
+  animation: floatY 6s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%, 100% {
+    translate: 0 -50px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+  }
+  50% {
+    translate: 0 0;
+    filter: none;
+  }
 }
 
 .hero-section .col-lft {
@@ -795,7 +807,11 @@ h5.dot:before {
   margin: auto;
   right: 0;
   left: 0;
-  z-index: -9;
+  /* z-index: -9; */
+}
+
+.client-section .content {
+  position: relative;
 }
 
 .client-section .logos-grid {

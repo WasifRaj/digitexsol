@@ -1,3 +1,19 @@
+window.addEventListener('load', () => {
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: true,
+  });
+
+  function animate(time) {
+    lenis.raf(time);
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   function createMarquee(selector, speed, reverse = false) {
     let wrapper = document.querySelector(selector);
@@ -40,34 +56,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const allSections = document.querySelectorAll(".service-content");
   const subButtons = document.querySelectorAll(".sub-service-btn");
 
-  // Main Categories Click Event
   mainItems.forEach((item) => {
     item.addEventListener("click", function () {
-      // Remove active class
       mainItems.forEach((i) => i.classList.remove("active"));
       this.classList.add("active");
 
-      // Hide all sections
       allSections.forEach((section) => section.classList.remove("active"));
 
-      // Show the selected section
       const target = this.getAttribute("data-target");
       document.getElementById(target).classList.add("active");
     });
   });
 
-  // Sub-category Buttons (Image Change)
   document.querySelectorAll(".service-content").forEach((section) => {
     const buttons = section.querySelectorAll(".sub-service-btn");
     const image = section.querySelector(".service-image img");
 
     buttons.forEach((button) => {
       button.addEventListener("click", function () {
-        // Remove active class
         buttons.forEach((btn) => btn.classList.remove("active"));
         this.classList.add("active");
 
-        // Change Image
         const newImage = this.getAttribute("data-image");
         image.src = newImage;
       });
@@ -98,21 +107,18 @@ function createMarqueeAnimation(elements, baseSpeed, direction) {
   });
 }
 
-// Select marquees by class
 let leftMarquees = document.querySelectorAll(".marquee-left");
 let rightMarquees = document.querySelectorAll(".marquee-right");
 
-// Apply animations
 createMarqueeAnimation(leftMarquees, 20, "left");
 createMarqueeAnimation(rightMarquees, 24, "right");
 
-// <-- Swiper JS -->
 document.addEventListener("DOMContentLoaded", function () {
   let normalSlider, reverseSlider;
 
   function createInfiniteSwiper(selector, reverse = false) {
     return new Swiper(selector, {
-      slidesPerView: 2, // ✅ Agar slides kam hain to isko 1 kar do
+      slidesPerView: 2, 
       spaceBetween: 20,
       loop: true,
       allowTouchMove: true,
@@ -126,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function initSliders() {
-    // ✅ Pehle check karlo agar Swiper initialize ho chuka hai
     if (normalSlider instanceof Swiper) {
       normalSlider.destroy(true, true);
     }
@@ -134,11 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
       reverseSlider.destroy(true, true);
     }
 
-    // ✅ Swipers Initialize
     normalSlider = createInfiniteSwiper(".normal-slider", false);
     reverseSlider = createInfiniteSwiper(".reverse-slider", true);
 
-    // ✅ Hover Events
     addHoverEvents();
   }
 
@@ -155,13 +158,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ✅ Initial Load (Jab Page First Time Load Ho)
   initSliders();
 
-  // ✅ Tab Change pe Slider Restart Karein
   document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => {
     tab.addEventListener("shown.bs.tab", () => {
-      initSliders(); // ✅ Jab tab change ho, slider dobara initialize hoga
+      initSliders(); 
     });
   });
 });
@@ -169,21 +170,20 @@ document.addEventListener("DOMContentLoaded", function () {
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".logo-img", {
-  scale: 100, // Halka halka bada hoga
+  scale: 100,
   duration: 5,
-  ease: "none", // Smooth effect ke liye
+  ease: "none", 
   scrollTrigger: {
     trigger: ".logo-section",
     start: "top top",
     end: "bottom top",
-    scrub: 1, // Smooth scrolling effect
-    pin: true, // Section ko fix karne ke liye
+    scrub: 1, 
+    pin: true, 
   },
 });
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Swiper Initialization
 let reviewSwiper = new Swiper(".review-swiper", {
   slidesPerView: 3,
   spaceBetween: 20,
@@ -214,13 +214,18 @@ gsap.fromTo(
 document.addEventListener("DOMContentLoaded", function () {
   const faqButtons = document.querySelectorAll(".faq-question");
 
+  // Make the first FAQ answer open by default
+  const firstAnswer = faqButtons[0].nextElementSibling;
+  const firstIcon = faqButtons[0].querySelector(".icon");
+  firstAnswer.style.display = "block";
+  firstIcon.textContent = "-";
+
   faqButtons.forEach((btn) => {
     btn.addEventListener("click", function () {
       const answer = this.nextElementSibling;
       const icon = this.querySelector(".icon");
       const isActive = answer.style.display === "block";
 
-      // पहले सबको बंद करो
       document.querySelectorAll(".faq-answer").forEach((ans) => {
         ans.style.display = "none";
       });
@@ -229,9 +234,51 @@ document.addEventListener("DOMContentLoaded", function () {
         ic.textContent = "+";
       });
 
-      // Toggle selected FAQ
       answer.style.display = isActive ? "none" : "block";
       icon.textContent = isActive ? "+" : "-";
     });
+  });
+});
+
+
+window.addEventListener("load", () => {
+  const tl = gsap.timeline();
+
+  const content = document.querySelectorAll(".content h5, .content h1, .content h4");
+  
+  tl.from(content, {
+    opacity: 0,
+    y: 20,
+    stagger: 0.5,  
+    duration: 0.5,    
+    ease: "power2.out"
+  })
+  .from(".astronut", {
+    x: 100,
+    opacity: 0,
+    duration: 1, 
+    ease: "power2.out"
+  }, "1.5");
+});
+
+
+window.addEventListener('load', () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo('.rocket', {
+    x: 0,  
+    y: 0, 
+  }, {
+    x: () => -(window.innerWidth - 50), 
+    y: () => -(window.innerHeight) + 50, 
+    duration: 3, 
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '.client-section', 
+      start: 'top 10%', 
+      end: 'top -50%',  
+      scrub: true,     
+      toggleActions: 'play none none none', 
+    },
   });
 });
