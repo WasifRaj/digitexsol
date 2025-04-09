@@ -241,25 +241,89 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-window.addEventListener("load", () => {
-  const tl = gsap.timeline();
+// window.addEventListener("load", () => {
+//   const tl = gsap.timeline();
 
-  const content = document.querySelectorAll(".content h5, .content h1, .content h4");
+//   const content = document.querySelectorAll(".content h5, .content h1, .content h4");
   
-  tl.from(content, {
+//   tl.from(content, {
+//     opacity: 0,
+//     y: 20,
+//     stagger: 0.5,  
+//     duration: 0.5,    
+//     ease: "power2.out"
+//   })
+//   .from(".astronut", {
+//     x: 100,
+//     opacity: 0,
+//     duration: 1, 
+//     ease: "power2.out"
+//   }, "1.5");
+// });
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+// 🟢 Banner Animation on Page Load
+window.addEventListener("load", () => {
+  gsap.from(".hero-section .lft-col", {
+    x: -100,
     opacity: 0,
-    y: 20,
-    stagger: 0.5,  
-    duration: 0.5,    
+    duration: 1,
     ease: "power2.out"
-  })
-  .from(".astronut", {
+  });
+
+  gsap.from(".hero-section .rgt-col", {
     x: 100,
     opacity: 0,
-    duration: 1, 
-    ease: "power2.out"
-  }, "1.5");
+    duration: 1,
+    ease: "power2.out",
+    delay: 0.2
+  });
 });
+
+// 🔵 Scroll Animation for all sections
+gsap.utils.toArray(".animated-section").forEach(section => {
+  const leftCol = section.querySelector(".lft-col");
+  const rightCol = section.querySelector(".rgt-col");
+
+  if (leftCol) {
+    gsap.fromTo(leftCol,
+      { x: -100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%", // Animate when section enters from bottom
+          toggleActions: "play reverse play reverse",
+          markers: false
+        }
+      }
+    );
+  }
+
+  if (rightCol) {
+    gsap.fromTo(rightCol,
+      { x: 100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play reverse play reverse",
+          markers: false
+        }
+      }
+    );
+  }
+});
+
 
 
 window.addEventListener('load', () => {
@@ -282,3 +346,74 @@ window.addEventListener('load', () => {
     },
   });
 });
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+const animatedText = document.querySelector(".animated-heading");
+
+const chars = animatedText.textContent.split("");
+
+animatedText.innerHTML = chars
+  .map(char => `<span>${char === " " ? "&nbsp;" : char}</span>`)
+  .join("");
+
+gsap.to(".animated-heading span", {
+  color: "var(--primary-color)",
+  stagger: {
+    each: 0.05
+  },
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 50%",
+    end: "top 10%", 
+    scrub: true,
+  }
+});
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".service-section", {
+  y: -400, 
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".service-section",
+    start: "top bottom",   
+    end: "bottom top",   
+    scrub: true,         
+  }
+});
+
+
+const talkBtn = document.querySelector('.talk-btn');
+const ctaSection = document.querySelector('.cta-section');
+
+const original = {
+  x: 0,
+  y: 0,
+};
+
+ctaSection.addEventListener('mousemove', (e) => {
+  const rect = ctaSection.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  gsap.to(talkBtn, {
+    x: x - talkBtn.offsetWidth / 2,
+    y: y - talkBtn.offsetHeight / 2,
+    duration: 0.5,
+    ease: "power3.out"
+  });
+});
+
+ctaSection.addEventListener('mouseleave', () => {
+  gsap.to(talkBtn, {
+    x: original.x,
+    y: original.y,
+    duration: 0.6,
+    ease: "power3.out"
+  });
+});
+

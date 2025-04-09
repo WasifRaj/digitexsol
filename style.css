@@ -388,6 +388,12 @@ a.btn.btn-secondary svg {
   margin-top: 30px;
 }
 
+.animated-heading span {
+  display: inline-block;
+  color: white;
+  transition: color 0.3s ease;
+}
+
 h5.dot {
   position: relative;
   padding-left: 25px;
@@ -607,6 +613,8 @@ h5.dot:before {
 
 .cta-section .col-md-6 {
   position: relative;
+  z-index: 9;
+  pointer-events: none;
 }
 
 .cta-section .col-left:before {
@@ -759,6 +767,7 @@ h5.dot:before {
   border-radius: 50px;
   padding: 18px;
   border: 1px solid #0000002b;
+  height: 890px;
 }
 
 .review-section .swiper-slide .map-img {
@@ -936,7 +945,15 @@ h5.dot:before {
 .get-section .get-img {
   position: relative;
   z-index: 99;
-  right: -70px;
+  right: 0px;
+  width: 100%;
+  top: 70px;
+}
+
+.get-section .col-right {
+  position: relative;
+  z-index: 9;
+  pointer-events: none;
 }
 
 .logos-grid .col-3 {
