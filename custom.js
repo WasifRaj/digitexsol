@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const mainItems = document.querySelectorAll(".service-list li");
   const allSections = document.querySelectorAll(".service-content");
-  const subButtons = document.querySelectorAll(".sub-service-btn");
 
   mainItems.forEach((item) => {
     item.addEventListener("click", function () {
@@ -78,7 +77,24 @@ document.addEventListener("DOMContentLoaded", function () {
         this.classList.add("active");
 
         const newImage = this.getAttribute("data-image");
-        image.src = newImage;
+
+        // Animate out the current image
+        gsap.to(image, {
+          x: 100,
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.out",
+          onComplete: () => {
+            image.src = newImage;
+            gsap.set(image, { x: 100 });
+            gsap.to(image, {
+              x: 0,
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            });
+          },
+        });
       });
     });
   });
@@ -289,7 +305,7 @@ gsap.utils.toArray(".animated-section").forEach(section => {
 
   if (leftCol) {
     gsap.fromTo(leftCol,
-      { x: -100, opacity: 0 },
+      { x: -200, opacity: 0 },
       {
         x: 0,
         opacity: 1,
@@ -297,7 +313,7 @@ gsap.utils.toArray(".animated-section").forEach(section => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 80%", // Animate when section enters from bottom
+          start: "top 50%", // Animate when section enters from bottom
           toggleActions: "play reverse play reverse",
           markers: false
         }
@@ -307,7 +323,7 @@ gsap.utils.toArray(".animated-section").forEach(section => {
 
   if (rightCol) {
     gsap.fromTo(rightCol,
-      { x: 100, opacity: 0 },
+      { x: 200, opacity: 0 },
       {
         x: 0,
         opacity: 1,
@@ -315,7 +331,7 @@ gsap.utils.toArray(".animated-section").forEach(section => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
+          start: "top 50%",
           toggleActions: "play reverse play reverse",
           markers: false
         }
@@ -366,8 +382,8 @@ gsap.to(".animated-heading span", {
   ease: "none",
   scrollTrigger: {
     trigger: ".about-section",
-    start: "top 50%",
-    end: "top 10%", 
+    start: "top 40%",
+    end: "top 0%", 
     scrub: true,
   }
 });
@@ -376,7 +392,7 @@ gsap.to(".animated-heading span", {
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".service-section", {
-  y: -400, 
+  y: -450, 
   ease: "none",
   scrollTrigger: {
     trigger: ".service-section",
@@ -417,3 +433,38 @@ ctaSection.addEventListener('mouseleave', () => {
   });
 });
 
+
+gsap.registerPlugin(ScrollTrigger);
+
+const container = document.querySelector(".custom-header .container");
+const logo = document.querySelector(".navbar-brand img");
+
+ScrollTrigger.create({
+  trigger: document.body,
+  start: "top+=10 top",
+  onEnter: () => animateHeader(true),
+  onLeaveBack: () => animateHeader(false),
+});
+
+function animateHeader(scrolled) {
+  gsap.to(container, {
+    duration: 0.5,
+    ease: "power2.out",
+    maxWidth: scrolled ? "1200px" : "1440px",
+    borderRadius: scrolled ? "200px" : "0px",
+    backgroundColor: scrolled ? "rgb(0 0 0 / 30%)" : "transparent",
+    backdropFilter: scrolled ? "blur(10px)" : "blur(0px)",
+    boxShadow: scrolled
+      ? "0 8px 24px rgba(0, 0, 0, 0.15)"
+      : "0 0 0 rgba(0, 0, 0, 0)",
+    border: scrolled
+      ? "2px solid rgba(255, 255, 255, 0.15)"
+      : "2px solid transparent"
+  });
+
+  gsap.to(logo, {
+    duration: 0.5,
+    ease: "power2.out",
+    scale: scrolled ? 0.85 : 1,
+  });
+}
