@@ -55,6 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainItems = document.querySelectorAll(".service-list li");
   const allSections = document.querySelectorAll(".service-content");
 
+  const preloadImages = () => {
+    document.querySelectorAll(".sub-service-btn").forEach((btn) => {
+      const imgSrc = btn.getAttribute("data-image");
+      if (imgSrc) {
+        const img = new Image();
+        img.src = imgSrc;
+      }
+    });
+  };
+
+  preloadImages();
+
   mainItems.forEach((item) => {
     item.addEventListener("click", function () {
       mainItems.forEach((i) => i.classList.remove("active"));
@@ -285,14 +297,14 @@ window.addEventListener("load", () => {
   gsap.from(".hero-section .lft-col", {
     x: -100,
     opacity: 0,
-    duration: 1,
+    duration: 1.5,
     ease: "power2.out"
   });
 
   gsap.from(".hero-section .rgt-col", {
     x: 100,
     opacity: 0,
-    duration: 1,
+    duration: 1.5,
     ease: "power2.out",
     delay: 0.2
   });
@@ -356,7 +368,7 @@ window.addEventListener('load', () => {
     scrollTrigger: {
       trigger: '.client-section', 
       start: 'top 10%', 
-      end: 'top -50%',  
+      end: 'top -200%',  
       scrub: true,     
       toggleActions: 'play none none none', 
     },
@@ -468,3 +480,41 @@ function animateHeader(scrolled) {
     scale: scrolled ? 0.85 : 1,
   });
 }
+
+// window.addEventListener('load', () => {
+//   gsap.registerPlugin(ScrollTrigger);
+
+//   // About Section sticky effect
+//   gsap.fromTo('.about-section', {
+//     position: 'relative',
+//     top: 0,
+//   }, {
+//     position: 'sticky',
+//     top: 0,
+//     duration: 1,
+//     ease: 'power2.out',
+//     scrollTrigger: {
+//       trigger: '.about-section',
+//       start: 'top top',
+//       end: 'bottom top',
+//       scrub: true, // Smooth scroll effect
+//       toggleActions: 'play none none none',
+//     },
+//   });
+
+//   // Service Section sliding effect
+//   gsap.fromTo('.service-section', {
+//     y: '100%', // Initial position is below the viewport
+//   }, {
+//     y: '0%',
+//     duration: 1,
+//     ease: 'power2.out',
+//     scrollTrigger: {
+//       trigger: '.about-section',
+//       start: 'bottom bottom',
+//       end: 'bottom top',
+//       scrub: true, // Smooth scroll effect
+//       toggleActions: 'play none none none',
+//     },
+//   });
+// });
