@@ -146,8 +146,8 @@ h1 {
 }
 
 h2 {
-  font-size: 70px;
-  line-height: 80px;
+  font-size: 68px;
+  line-height: 78px;
   font-family: itc-demi;
   font-weight: 600;
   color: var(--light-color);
@@ -483,6 +483,8 @@ h5.dot:before {
 .main-bg {
   background: url(assets/images/main-bg.png);
   background-size: 100% 100%;
+  background-color: var(--secondary-color);
+  position: relative;
 }
 
 .service-section {
@@ -715,6 +717,8 @@ h5.dot:before {
   padding-top: 200px;
   background-position: top center;
   margin-top: -120px;
+  background-color: var(--secondary-color);
+  position: relative;
 }
 
 .portfolio-section .swiper-container {
@@ -785,6 +789,7 @@ h5.dot:before {
   align-items: center;
   position: relative;
   overflow: hidden;
+  background-color: var(--secondary-color);
 }
 
 .logo-figure {
@@ -1327,3 +1332,74 @@ footer .copyright {
 }
 
 /*------Footer Css End-----------*/
+
+
+/*------Inner Pages Css Start-----------*/
+
+.service-hero-banner {
+  padding-block: 200px;
+}
+.service-hero-banner ul li {
+  list-style: circle;
+  margin-left: 20px;
+}
+.service-hero-banner ul {
+  column-count: 2;
+  margin-bottom: 25px;
+}
+.service-hero-banner .col-md-6 .col-inner {
+  background: #000f24c9;
+  border-radius: 40px;
+  padding: 50px 60px;
+  border: 2px solid;
+}
+
+.dev-logo-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dev-logo-swiper .swiper-slide img {
+  max-height: 60px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.dev-logo-swiper .swiper-slide img:hover {
+  opacity: 1;
+}
+
+.development-services {
+  color: white;
+  padding-block: 120px !important;
+}
+
+.development-services .card-ser {
+  background: #000f24c9;
+  border-radius: 12px;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+  border: 2px solid var(--primary-color);
+}
+
+.development-services .card-ser:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.development-services .icon {
+  color: var(--primary-color); 
+  margin-bottom: 15px;
+}
+
+.development-services .col-12.col-lg-3 {
+  margin-bottom: 22px;
+}
+
+/*------Inner Pages Css End-----------*/

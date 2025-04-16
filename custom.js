@@ -242,7 +242,6 @@ gsap.fromTo(
 document.addEventListener("DOMContentLoaded", function () {
   const faqButtons = document.querySelectorAll(".faq-question");
 
-  // Make the first FAQ answer open by default
   const firstAnswer = faqButtons[0].nextElementSibling;
   const firstIcon = faqButtons[0].querySelector(".icon");
   firstAnswer.style.display = "block";
@@ -292,7 +291,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// 🟢 Banner Animation on Page Load
 window.addEventListener("load", () => {
   gsap.from(".hero-section .lft-col", {
     x: -100,
@@ -368,7 +366,7 @@ window.addEventListener('load', () => {
     scrollTrigger: {
       trigger: '.client-section', 
       start: 'top 10%', 
-      end: 'top -200%',  
+      end: 'top -300%',  
       scrub: true,     
       toggleActions: 'play none none none', 
     },
@@ -379,40 +377,43 @@ window.addEventListener('load', () => {
 gsap.registerPlugin(ScrollTrigger);
 
 const animatedText = document.querySelector(".animated-heading");
+const aboutSection = document.querySelector(".about-section");
 
-const chars = animatedText.textContent.split("");
+if (animatedText && aboutSection) {
+  const chars = animatedText.textContent.split("");
 
-animatedText.innerHTML = chars
-  .map(char => `<span>${char === " " ? "&nbsp;" : char}</span>`)
-  .join("");
+  animatedText.innerHTML = chars
+    .map(char => `<span>${char === " " ? "&nbsp;" : char}</span>`)
+    .join("");
 
-gsap.to(".animated-heading span", {
-  color: "var(--primary-color)",
-  stagger: {
-    each: 0.05
-  },
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".about-section",
-    start: "top 40%",
-    end: "top 0%", 
-    scrub: true,
-  }
-});
+  gsap.to(".animated-heading span", {
+    color: "var(--primary-color)",
+    stagger: {
+      each: 0.05
+    },
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".about-section",
+      start: "top 40%",
+      end: "top 0%", 
+      scrub: true,
+    }
+  });
+}
 
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
-gsap.to(".service-section", {
-  y: -450, 
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".service-section",
-    start: "top bottom",   
-    end: "bottom top",   
-    scrub: true,         
-  }
-});
+// gsap.to(".service-section", {
+//   y: -450, 
+//   ease: "none",
+//   scrollTrigger: {
+//     trigger: ".service-section",
+//     start: "top bottom",   
+//     end: "bottom top",   
+//     scrub: true,         
+//   }
+// });
 
 
 const talkBtn = document.querySelector('.talk-btn');
@@ -423,27 +424,29 @@ const original = {
   y: 0,
 };
 
-ctaSection.addEventListener('mousemove', (e) => {
-  const rect = ctaSection.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+if (talkBtn && ctaSection) {
+  ctaSection.addEventListener('mousemove', (e) => {
+    const rect = ctaSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  gsap.to(talkBtn, {
-    x: x - talkBtn.offsetWidth / 2,
-    y: y - talkBtn.offsetHeight / 2,
-    duration: 0.5,
-    ease: "power3.out"
+    gsap.to(talkBtn, {
+      x: x - talkBtn.offsetWidth / 2,
+      y: y - talkBtn.offsetHeight / 2,
+      duration: 0.5,
+      ease: "power3.out"
+    });
   });
-});
 
-ctaSection.addEventListener('mouseleave', () => {
-  gsap.to(talkBtn, {
-    x: original.x,
-    y: original.y,
-    duration: 0.6,
-    ease: "power3.out"
+  ctaSection.addEventListener('mouseleave', () => {
+    gsap.to(talkBtn, {
+      x: original.x,
+      y: original.y,
+      duration: 0.6,
+      ease: "power3.out"
+    });
   });
-});
+}
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -481,40 +484,53 @@ function animateHeader(scrolled) {
   });
 }
 
-// window.addEventListener('load', () => {
-//   gsap.registerPlugin(ScrollTrigger);
+window.addEventListener('load', () => {
+  gsap.registerPlugin(ScrollTrigger);
 
-//   // About Section sticky effect
-//   gsap.fromTo('.about-section', {
-//     position: 'relative',
-//     top: 0,
-//   }, {
-//     position: 'sticky',
-//     top: 0,
-//     duration: 1,
-//     ease: 'power2.out',
-//     scrollTrigger: {
-//       trigger: '.about-section',
-//       start: 'top top',
-//       end: 'bottom top',
-//       scrub: true, // Smooth scroll effect
-//       toggleActions: 'play none none none',
-//     },
-//   });
+  gsap.fromTo('.about-section', {
+    position: 'relative',
+    top: 0,
+  }, {
+    position: 'sticky',
+    top: 0,
+    duration: 1,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '.about-section',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+      toggleActions: 'play none none none',
+    },
+  });
 
-//   // Service Section sliding effect
-//   gsap.fromTo('.service-section', {
-//     y: '100%', // Initial position is below the viewport
-//   }, {
-//     y: '0%',
-//     duration: 1,
-//     ease: 'power2.out',
-//     scrollTrigger: {
-//       trigger: '.about-section',
-//       start: 'bottom bottom',
-//       end: 'bottom top',
-//       scrub: true, // Smooth scroll effect
-//       toggleActions: 'play none none none',
-//     },
-//   });
-// });
+  gsap.fromTo('.service-section', {
+    y: '100%', 
+  }, {
+    y: '0%',
+    duration: 1,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '.about-section',
+      start: 'bottom bottom',
+      end: 'bottom top',
+      scrub: true, 
+      toggleActions: 'play none none none',
+    },
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".dev-logo-swiper", {
+    slidesPerView: 7,
+    loop: true,
+    speed: 3000,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+    },
+    spaceBetween: 30,
+    grabCursor: true,
+  });
+});
