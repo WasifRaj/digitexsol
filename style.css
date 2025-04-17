@@ -1413,7 +1413,7 @@ header ul.dropdown-menu.show .dropdown-item {
 }
 
 .development-services .card-ser:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
