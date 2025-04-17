@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function createInfiniteSwiper(selector, reverse = false) {
     return new Swiper(selector, {
-      slidesPerView: 2, 
+      slidesPerView: 2,
       spaceBetween: 20,
       loop: true,
       allowTouchMove: true,
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => {
     tab.addEventListener("shown.bs.tab", () => {
-      initSliders(); 
+      initSliders();
     });
   });
 });
@@ -200,13 +200,13 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.to(".logo-img", {
   scale: 100,
   duration: 5,
-  ease: "none", 
+  ease: "none",
   scrollTrigger: {
     trigger: ".logo-section",
     start: "top top",
     end: "bottom top",
-    scrub: 1, 
-    pin: true, 
+    scrub: 1,
+    pin: true,
   },
 });
 
@@ -242,52 +242,62 @@ gsap.fromTo(
 document.addEventListener("DOMContentLoaded", function () {
   const faqButtons = document.querySelectorAll(".faq-question");
 
-  const firstAnswer = faqButtons[0].nextElementSibling;
-  const firstIcon = faqButtons[0].querySelector(".icon");
-  firstAnswer.style.display = "block";
-  firstIcon.textContent = "-";
+  faqButtons.forEach((btn, index) => {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector(".icon");
 
-  faqButtons.forEach((btn) => {
+    // Initial setup: open first FAQ
+    if (index === 0) {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+      answer.style.opacity = "1";
+      icon.textContent = "-";
+    } else {
+      answer.style.maxHeight = "0px";
+      answer.style.opacity = "0";
+    }
+
     btn.addEventListener("click", function () {
-      const answer = this.nextElementSibling;
-      const icon = this.querySelector(".icon");
-      const isActive = answer.style.display === "block";
+      const isOpen = answer.style.maxHeight !== "0px";
 
+      // Close all
       document.querySelectorAll(".faq-answer").forEach((ans) => {
-        ans.style.display = "none";
+        ans.style.maxHeight = "0px";
+        ans.style.opacity = "0";
       });
 
-      document.querySelectorAll(".icon").forEach((ic) => {
+      document.querySelectorAll(".faq-question .icon").forEach((ic) => {
         ic.textContent = "+";
       });
 
-      answer.style.display = isActive ? "none" : "block";
-      icon.textContent = isActive ? "+" : "-";
+      // Open this if it wasn't already open
+      if (!isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        answer.style.opacity = "1";
+        icon.textContent = "-";
+      }
     });
   });
 });
-
 
 // window.addEventListener("load", () => {
 //   const tl = gsap.timeline();
 
 //   const content = document.querySelectorAll(".content h5, .content h1, .content h4");
-  
+
 //   tl.from(content, {
 //     opacity: 0,
 //     y: 20,
-//     stagger: 0.5,  
-//     duration: 0.5,    
+//     stagger: 0.5,
+//     duration: 0.5,
 //     ease: "power2.out"
 //   })
 //   .from(".astronut", {
 //     x: 100,
 //     opacity: 0,
-//     duration: 1, 
+//     duration: 1,
 //     ease: "power2.out"
 //   }, "1.5");
 // });
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -296,7 +306,7 @@ window.addEventListener("load", () => {
     x: -100,
     opacity: 0,
     duration: 1.5,
-    ease: "power2.out"
+    ease: "power2.out",
   });
 
   gsap.from(".hero-section .rgt-col", {
@@ -304,17 +314,18 @@ window.addEventListener("load", () => {
     opacity: 0,
     duration: 1.5,
     ease: "power2.out",
-    delay: 0.2
+    delay: 0.2,
   });
 });
 
 // 🔵 Scroll Animation for all sections
-gsap.utils.toArray(".animated-section").forEach(section => {
+gsap.utils.toArray(".animated-section").forEach((section) => {
   const leftCol = section.querySelector(".lft-col");
   const rightCol = section.querySelector(".rgt-col");
 
   if (leftCol) {
-    gsap.fromTo(leftCol,
+    gsap.fromTo(
+      leftCol,
       { x: -200, opacity: 0 },
       {
         x: 0,
@@ -325,14 +336,15 @@ gsap.utils.toArray(".animated-section").forEach(section => {
           trigger: section,
           start: "top 50%", // Animate when section enters from bottom
           toggleActions: "play reverse play reverse",
-          markers: false
-        }
+          markers: false,
+        },
       }
     );
   }
 
   if (rightCol) {
-    gsap.fromTo(rightCol,
+    gsap.fromTo(
+      rightCol,
       { x: 200, opacity: 0 },
       {
         x: 0,
@@ -343,36 +355,37 @@ gsap.utils.toArray(".animated-section").forEach(section => {
           trigger: section,
           start: "top 50%",
           toggleActions: "play reverse play reverse",
-          markers: false
-        }
+          markers: false,
+        },
       }
     );
   }
 });
 
-
-
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.fromTo('.rocket', {
-    x: 0,  
-    y: 0, 
-  }, {
-    x: () => -(window.innerWidth - 50), 
-    y: () => -(window.innerHeight) + 50, 
-    duration: 3, 
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.client-section', 
-      start: 'top 10%', 
-      end: 'top -300%',  
-      scrub: true,     
-      toggleActions: 'play none none none', 
+  gsap.fromTo(
+    ".rocket",
+    {
+      x: 0,
+      y: 0,
     },
-  });
+    {
+      x: () => -(window.innerWidth - 50),
+      y: () => -window.innerHeight + 50,
+      duration: 3,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".client-section",
+        start: "top 10%",
+        end: "top -300%",
+        scrub: true,
+        toggleActions: "play none none none",
+      },
+    }
+  );
 });
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -383,41 +396,39 @@ if (animatedText && aboutSection) {
   const chars = animatedText.textContent.split("");
 
   animatedText.innerHTML = chars
-    .map(char => `<span>${char === " " ? "&nbsp;" : char}</span>`)
+    .map((char) => `<span>${char === " " ? "&nbsp;" : char}</span>`)
     .join("");
 
   gsap.to(".animated-heading span", {
     color: "var(--primary-color)",
     stagger: {
-      each: 0.05
+      each: 0.05,
     },
     ease: "none",
     scrollTrigger: {
       trigger: ".about-section",
       start: "top 40%",
-      end: "top 0%", 
+      end: "top 0%",
       scrub: true,
-    }
+    },
   });
 }
-
 
 // gsap.registerPlugin(ScrollTrigger);
 
 // gsap.to(".service-section", {
-//   y: -450, 
+//   y: -450,
 //   ease: "none",
 //   scrollTrigger: {
 //     trigger: ".service-section",
-//     start: "top bottom",   
-//     end: "bottom top",   
-//     scrub: true,         
+//     start: "top bottom",
+//     end: "bottom top",
+//     scrub: true,
 //   }
 // });
 
-
-const talkBtn = document.querySelector('.talk-btn');
-const ctaSection = document.querySelector('.cta-section');
+const talkBtn = document.querySelector(".talk-btn");
+const ctaSection = document.querySelector(".cta-section");
 
 const original = {
   x: 0,
@@ -425,7 +436,7 @@ const original = {
 };
 
 if (talkBtn && ctaSection) {
-  ctaSection.addEventListener('mousemove', (e) => {
+  ctaSection.addEventListener("mousemove", (e) => {
     const rect = ctaSection.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -434,20 +445,19 @@ if (talkBtn && ctaSection) {
       x: x - talkBtn.offsetWidth / 2,
       y: y - talkBtn.offsetHeight / 2,
       duration: 0.5,
-      ease: "power3.out"
+      ease: "power3.out",
     });
   });
 
-  ctaSection.addEventListener('mouseleave', () => {
+  ctaSection.addEventListener("mouseleave", () => {
     gsap.to(talkBtn, {
       x: original.x,
       y: original.y,
       duration: 0.6,
-      ease: "power3.out"
+      ease: "power3.out",
     });
   });
 }
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -474,7 +484,7 @@ function animateHeader(scrolled) {
       : "0 0 0 rgba(0, 0, 0, 0)",
     border: scrolled
       ? "2px solid rgba(255, 255, 255, 0.15)"
-      : "2px solid transparent"
+      : "2px solid transparent",
   });
 
   gsap.to(logo, {
@@ -484,42 +494,49 @@ function animateHeader(scrolled) {
   });
 }
 
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.fromTo('.about-section', {
-    position: 'relative',
-    top: 0,
-  }, {
-    position: 'sticky',
-    top: 0,
-    duration: 1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.about-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-      toggleActions: 'play none none none',
+  gsap.fromTo(
+    ".about-section",
+    {
+      position: "relative",
+      top: 0,
     },
-  });
+    {
+      position: "sticky",
+      top: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        toggleActions: "play none none none",
+      },
+    }
+  );
 
-  gsap.fromTo('.service-section', {
-    y: '100%', 
-  }, {
-    y: '0%',
-    duration: 1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.about-section',
-      start: 'bottom bottom',
-      end: 'bottom top',
-      scrub: true, 
-      toggleActions: 'play none none none',
+  gsap.fromTo(
+    ".service-section",
+    {
+      y: "100%",
     },
-  });
+    {
+      y: "0%",
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "bottom bottom",
+        end: "bottom top",
+        scrub: true,
+        toggleActions: "play none none none",
+      },
+    }
+  );
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
   new Swiper(".dev-logo-swiper", {
