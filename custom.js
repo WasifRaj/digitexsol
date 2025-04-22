@@ -197,18 +197,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.to(".logo-img", {
-  scale: 100,
-  duration: 5,
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".logo-section",
-    start: "top top",
-    end: "bottom top",
-    scrub: 1,
-    pin: true,
-  },
-});
+if (document.querySelector(".logo-section") && document.querySelector(".logo-img")) {
+  gsap.to(".logo-img", {
+    scale: 100,
+    duration: 5,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".logo-section",
+      start: "top top",
+      end: "bottom top",
+      scrub: 1,
+      pin: true,
+    },
+  });
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -365,54 +367,61 @@ gsap.utils.toArray(".animated-section").forEach((section) => {
 window.addEventListener("load", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.fromTo(
-    ".rocket",
-    {
-      x: 0,
-      y: 0,
-    },
-    {
-      x: () => -(window.innerWidth - 50),
-      y: () => -window.innerHeight + 50,
-      duration: 3,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".client-section",
-        start: "top 10%",
-        end: "top -300%",
-        scrub: true,
-        toggleActions: "play none none none",
+  const rocket = document.querySelector(".rocket");
+  const clientSection = document.querySelector(".client-section");
+
+  if (rocket && clientSection) {
+    gsap.fromTo(
+      rocket,
+      {
+        x: 0,
+        y: 0,
       },
-    }
-  );
+      {
+        x: () => -(window.innerWidth - 50),
+        y: () => -window.innerHeight + 50,
+        duration: 3,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: clientSection,
+          start: "top 10%",
+          end: "top -300%",
+          scrub: true,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }
 });
 
 gsap.registerPlugin(ScrollTrigger);
 
-const animatedText = document.querySelector(".animated-heading");
-const aboutSection = document.querySelector(".about-section");
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedText = document.querySelector(".animated-heading");
+  const aboutSection = document.querySelector(".about-section");
 
-if (animatedText && aboutSection) {
-  const chars = animatedText.textContent.split("");
+  if (animatedText && aboutSection) {
+    const chars = animatedText.textContent.split("");
 
-  animatedText.innerHTML = chars
-    .map((char) => `<span>${char === " " ? "&nbsp;" : char}</span>`)
-    .join("");
+    animatedText.innerHTML = chars
+      .map((char) => `<span>${char === " " ? "&nbsp;" : char}</span>`)
+      .join("");
 
-  gsap.to(".animated-heading span", {
-    color: "var(--primary-color)",
-    stagger: {
-      each: 0.05,
-    },
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".about-section",
-      start: "top 40%",
-      end: "top 0%",
-      scrub: true,
-    },
-  });
-}
+    gsap.to(".animated-heading span", {
+      color: "var(--primary-color)",
+      stagger: {
+        each: 0.05,
+      },
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top 40%",
+        end: "top 0%",
+        scrub: true,
+      },
+    });
+  }
+});
 
 // gsap.registerPlugin(ScrollTrigger);
 
@@ -497,45 +506,52 @@ function animateHeader(scrolled) {
 window.addEventListener("load", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.fromTo(
-    ".about-section",
-    {
-      position: "relative",
-      top: 0,
-    },
-    {
-      position: "sticky",
-      top: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".about-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        toggleActions: "play none none none",
-      },
-    }
-  );
+  const aboutSection = document.querySelector(".about-section");
+  const serviceSection = document.querySelector(".service-section");
 
-  gsap.fromTo(
-    ".service-section",
-    {
-      y: "100%",
-    },
-    {
-      y: "0%",
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".about-section",
-        start: "bottom bottom",
-        end: "bottom top",
-        scrub: true,
-        toggleActions: "play none none none",
+  if (aboutSection) {
+    gsap.fromTo(
+      aboutSection,
+      {
+        position: "relative",
+        top: 0,
       },
-    }
-  );
+      {
+        position: "sticky",
+        top: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }
+
+  if (aboutSection && serviceSection) {
+    gsap.fromTo(
+      serviceSection,
+      {
+        y: "100%",
+      },
+      {
+        y: "0%",
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -551,3 +567,65 @@ document.addEventListener("DOMContentLoaded", function () {
     grabCursor: true,
   });
 });
+
+
+
+(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const setupScrollCards = () => {
+    const cards = gsap.utils.toArray(".panel__card");
+
+    if (!cards.length) return;
+
+    let spacer = document.querySelector(".panel__spacer");
+    if (!spacer) {
+      spacer = document.createElement("div");
+      spacer.classList.add("panel__spacer");
+      document.querySelector(".panel").appendChild(spacer);
+    }
+
+    spacer.style.height = `900px`;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".panel",
+        start: "top top",
+        end: "+=900",
+        scrub: 1,
+        pin: true,
+        markers: false,
+        anticipatePin: 1
+      }
+    });
+
+    cards.forEach((card, i) => {
+      const label = `step-${i}`;
+
+      tl.fromTo(card, {
+        yPercent: 100,
+        scale: 1,
+      }, {
+        yPercent: 0,
+        scale: 1,
+        duration: 1
+      }, label);
+
+      cards.forEach((prevCard, j) => {
+        if (j < i) {
+          const scale = 1 - (i - j) * 0.05;
+          const yShift = -(i - j) * 50;
+
+          tl.to(prevCard, {
+            scale,
+            y: yShift,
+            duration: 1,
+            transformOrigin: "top center"
+          }, label);
+        }
+      });
+    });
+  };
+
+  setupScrollCards();
+})();
