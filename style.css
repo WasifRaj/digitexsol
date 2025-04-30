@@ -1417,6 +1417,10 @@ header ul.dropdown-menu.show .dropdown-item {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
+.development-services .card-ser i {
+  font-size: 3rem;
+}
+
 .development-services .icon {
   color: var(--primary-color);
   margin-bottom: 15px;
@@ -1963,5 +1967,8 @@ section.portfolio {
 .custom-row {
   display: flex;
   margin: 0 -.625em;
+}
+.our-work {
+  padding-top: 220px !important;
 }
 /*------Inner Pages Css End-----------*/
