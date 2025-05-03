@@ -798,10 +798,15 @@ h5.dot:before {
   z-index: 2;
 }
 
-.logo-img {
+/* .logo-img {
   width: 75px;
   transition: transform 0.5s ease-out;
   image-rendering: pixelated;
+} */
+
+.logo-img {
+  width: 500px;
+  transition: transform 0.5s ease-out;
 }
 
 .review-section {
@@ -1398,7 +1403,7 @@ header ul.dropdown-menu.show .dropdown-item {
 
 .development-services {
   color: white;
-  padding-block: 120px !important;
+  padding-block: 80px !important;
 }
 
 .development-services .card-ser {
@@ -1419,6 +1424,7 @@ header ul.dropdown-menu.show .dropdown-item {
 
 .development-services .card-ser i {
   font-size: 3rem;
+  color: var(--primary-color);
 }
 
 .development-services .icon {
@@ -1960,10 +1966,13 @@ section.portfolio {
     padding: 0 .625em;
 }
 .generic-panel__content.large-txt p {
-  font-size: 2.1875em;
+  font-size: 1.5rem;
 }
 }
-
+.panel__right-content__wrapper .generic-panel a {
+  font-size: 2rem;
+  line-height: 4rem;
+}
 .custom-row {
   display: flex;
   margin: 0 -.625em;
