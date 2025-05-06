@@ -1361,6 +1361,10 @@ header ul.dropdown-menu.show .dropdown-item:hover {
   color: black;
 }
 
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: transparent;
+}
+
 header ul.dropdown-menu.show .dropdown-item {
   color: white;
 }
@@ -1966,7 +1970,7 @@ section.portfolio {
     padding: 0 .625em;
 }
 .generic-panel__content.large-txt p {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 }
 .panel__right-content__wrapper .generic-panel a {
@@ -1979,5 +1983,60 @@ section.portfolio {
 }
 .our-work {
   padding-top: 220px !important;
+}
+.process-wrap {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 20px;
+  border: 1px solid #80808066;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+.process-wrap .title {
+  font-size: 50px;
+  font-weight: 900;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  transition: 0.4s;
+}
+.process-wrap div span {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.process-wrap:hover {
+  background-color: var(--primary-color);
+  color: black;
+}
+
+.process-wrap:hover .title {
+  background-color: white;
+  color: black;
+}
+.ui-process {
+  padding-block: 80px;
+  color: white;
+  background: url(assets/images/about-bg.webp);
+}
+.ui-form{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.ui-form form input,
+.ui-form form textarea {
+  border-bottom: 1px solid black;
+  color: black !important;
+}
+.ui-form input::placeholder,
+.ui-form textarea::placeholder {
+  color:black
+}
+.ui-process {
+  padding-block: 80px;
+  color: white;
 }
 /*------Inner Pages Css End-----------*/
