@@ -1448,6 +1448,16 @@ header ul.dropdown-menu.show .dropdown-item {
   margin: 10px;
 }
 
+.portfolio-simple-img img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+.portfolio-simple-img {
+  padding: 10px;
+}
+
 .portfolio_box_img figure img {
   width: 100%;
 }
